@@ -1,0 +1,65 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  width: 100%;
+  padding: 100px 16px 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.scroll {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.scroll::-webkit-scrollbar {
+	width: 8px;
+}
+.scroll::-webkit-scrollbar-track {
+	background: #2F2F37;
+}
+.scroll::-webkit-scrollbar-thumb {
+	background: #8585AD;
+	border: 3px solid #2F2F37;
+	border-radius: 6px;
+}
+
+.total {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.totalSum {
+  display: flex;
+  align-items: center;
+}
+
+.totalSum svg {
+  margin-left: 9px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.iconEmpty {
+  width: 32px;
+}
+
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+.item svg {
+  margin-right: 5px;
+}
