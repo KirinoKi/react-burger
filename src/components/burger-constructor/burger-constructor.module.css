@@ -1,6 +1,6 @@
 .main {
   grid-area: constructor;
-  margin-top: 120px;
+  margin-top: 65px;
   padding-right: 8px;
   padding-left: 16px;
   max-width: 600px;
@@ -9,7 +9,7 @@
 
 .scrollable {
   overflow-y: scroll;
-  height: 80px;
+  height: 178px;
   width: 580px;
   display: flex;
   flex-direction: column;
