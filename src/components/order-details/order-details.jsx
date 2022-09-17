@@ -1,17 +1,41 @@
-import styles from './order-details.module.css';
+import React from "react";
+import orderStyles from "./order-details.module.css";
+import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
-import doneImg from '../../images/done.svg';
+const OrderDetails = React.memo(() => {
+  const createdOrderNumber = useSelector(
+    (state) => state.apiDataReducer.createdOrderNumber
+  );
 
-function OrderDetails() {
   return (
-    <section className={`${styles.root}`}>
-      <span className={`${styles.title} text_type_digits-large mt-4 mb-8`}>034536</span>
-      <p className={`${styles.subTitle} text_type_main-medium mb-15`}>идентификатор заказа</p>
-      <img src={doneImg} alt="Заказ принят" className="mb-15"/>
-      <p className={`${styles.orderInfo} text_type_main-default mb-2`}>Ваш заказ начали готовить</p>
-      <p className={`${styles.orderInfo} ${styles.textColor} text_type_main-default mb-2`}>Дождитесь готовности на орбитальной станции</p>
-    </section>
-  )
+    <div className={orderStyles.container}>
+      <p className={`${orderStyles.number} text text_type_digits-large`}>
+        {createdOrderNumber}
+      </p>
+      <p className={`${orderStyles.caption} text text_type_main-medium`}>
+        идентификатор заказа
+      </p>
+      <div className={orderStyles.done}>
+        <CheckMarkIcon type="primary" />
+      </div>
+      <div className={orderStyles.confirmationContainer}>
+        <p className={`${orderStyles.paragraph} text text_type_main-default`}>
+          Ваш заказ начали готовить
+        </p>
+        <p
+          className={`${orderStyles.paragraph} text text_type_main-default text_color_inactive`}
+        >
+          Дождитесь готовности на орбитальной станции
+        </p>
+      </div>
+    </div>
+  );
+});
+
+OrderDetails.propTypes = {
+  orderData: PropTypes.number,
 };
 
 export default OrderDetails;

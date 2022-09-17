@@ -1,13 +1,10 @@
-.app {
-  width: 100%;
-  text-align: center;
-  background-color: #1A1B22;
-}
-
 .main {
-  display: flex;
-  justify-content: center;
-  height: calc(100vh - 128px);
-  padding: 88px 40px 40px;
-  overflow: hidden;
+  width: 1920px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 40px;
+  grid-template-areas: 
+  'header header'
+  'ingredients constructor'
+  'loading loading';
 }
