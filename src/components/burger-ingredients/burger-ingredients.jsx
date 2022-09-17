@@ -42,43 +42,10 @@ export default function BurgerIngredients() {
     </Modal>
   );
 
-  function getDistanceBetweenPoints(element, viewportCoords) {
-    const coordsChild = element.getBoundingClientRect();
-    return Math.abs(viewportCoords.top - coordsChild.top);
-  }
-
   const currentTab = useSelector((state) => state.tabReducer.currentTab);
   const bunRef = useRef();
   const sauceRef = useRef();
   const stuffingRef = useRef();
-
-  useEffect(() => {
-    function changeTab() {
-      const viewportCoords = document
-        .getElementById("scroll")
-        .getBoundingClientRect();
-      getDistanceBetweenPoints(bunRef.current, viewportCoords) <
-      getDistanceBetweenPoints(sauceRef.current, viewportCoords)
-        ? dispatch({
-            type: TAB_SWITCH,
-            value: TAB_NAME.BUN,
-          })
-        : getDistanceBetweenPoints(sauceRef.current, viewportCoords) <
-          getDistanceBetweenPoints(stuffingRef.current, viewportCoords)
-        ? dispatch({
-            type: TAB_SWITCH,
-            value: TAB_NAME.SAUCE,
-          })
-        : dispatch({
-            type: TAB_SWITCH,
-            value: TAB_NAME.STUFFING,
-          });
-    }
-
-    const scrollSection = document.getElementById("scroll");
-    scrollSection.addEventListener("scroll", changeTab);
-    return () => scrollSection.removeEventListener("scroll", changeTab);
-  }, [dispatch]);
 
   const onTabClick = (evt) => {
     dispatch({

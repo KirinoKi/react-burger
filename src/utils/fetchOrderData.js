@@ -2,22 +2,18 @@ import { baseUrl, checkResponce } from "./constants";
 
 export const fetchOrderDetails = (ingredients) => {
 
-  const requestOptions = {
+  return fetch(`${baseUrl}/orders`, {
     method: "POST",
+    body: JSON.stringify({ ingredients: [...ingredients] }),
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ ingredients }),
-  };
-
-  return fetch(`${baseUrl}/orders`, requestOptions).then(checkResponce);
+  }).then(checkResponce);
 };
 
 export const fetchIngredients = () => {
 
-  const requestOptions = {
+  return fetch(`${baseUrl}/ingredients`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(),
-  };
-  
-  return fetch(`${baseUrl}/ingredients`, requestOptions).then(checkResponce);
-}
+  }).then(checkResponce);
+};

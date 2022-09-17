@@ -32,7 +32,7 @@ const apiDataReducer = (state = initialState, { type, payload }) => {
         allIngredientsFailed: false,
       };
     case GET_INGREDIENTS_FAILED:
-      return { ...state, allIngredientsFailed: true };
+      return { ...state, allIngredientsFailed: true, allIngredientsRequest: false, };
 
     case GET_ORDER_NUMBER_REQUEST: {
       return { ...state, createdOrderNumberRequest: true };
@@ -48,7 +48,7 @@ const apiDataReducer = (state = initialState, { type, payload }) => {
     }
 
     case GET_ORDER_NUMBER_FAILED: {
-      return { ...state, createdOrderNumberFailed: true };
+      return { ...state, createdOrderNumber: null, createdOrderNumberFailed: true, createdOrderNumberRequest: false };
     }
 
     default:

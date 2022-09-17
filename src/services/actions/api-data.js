@@ -17,14 +17,10 @@ export function getIngredients() {
     dispatch({ type: GET_INGREDIENTS_REQUEST });
     fetchIngredients()
       .then((res) => {
-        if (res && res.success) {
           dispatch({
             type: GET_INGREDIENTS_SUCCESS,
             payload: res.data,
           });
-        } else {
-          dispatch({ type: GET_INGREDIENTS_FAILED });
-        }
       })
       .catch(() =>
         dispatch({
@@ -37,16 +33,12 @@ export function getIngredients() {
 export function getOrderNumber(ingredients) {
   return function (dispatch) {
     dispatch({ type: GET_ORDER_NUMBER_REQUEST });
-    fetchOrderDetails(ingredients)
+   fetchOrderDetails(ingredients)
       .then((res) => {
-        if (res && res.success) {
           dispatch({
             type: GET_ORDER_NUMBER_SUCCESS,
             payload: res.order.number,
           });
-        } else {
-          dispatch({ type: GET_ORDER_NUMBER_FAILED });
-        }
       })
       .catch(() =>
         dispatch({

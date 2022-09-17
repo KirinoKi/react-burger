@@ -20,6 +20,7 @@ import {
   SET_ORDER_INGREDIENTS,
 } from "../../services/actions/drop-container";
 import { Reorder } from "framer-motion";
+import uuid from 'react-uuid';
 
 const BurgerConstructor = React.memo(() => {
   const dispatch = useDispatch();
@@ -110,7 +111,7 @@ const BurgerConstructor = React.memo(() => {
                   return (
                     <ConstructorElements
                       ingredient={stuff}
-                      key={stuff._id}
+                      key={uuid()}
                       type="stuffing"
                       isLocked={false}
                     />
