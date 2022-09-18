@@ -20,7 +20,7 @@ import {
   SET_ORDER_INGREDIENTS,
 } from "../../services/actions/drop-container";
 import { Reorder } from "framer-motion";
-import uuid from 'react-uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 const BurgerConstructor = React.memo(() => {
   const dispatch = useDispatch();
@@ -31,10 +31,16 @@ const BurgerConstructor = React.memo(() => {
   const [, dropTarget] = useDrop({
     accept: "items",
     drop: (item) => {
-      item.type === "bun" && dispatch({ type: SET_BUNS, payload: item });
+      item.type === "bun" && dispatch({ type: SET_BUNS, payload: {
+        ...item,
+        uuid: uuidv4()
+    } });
       buns.length &&
         item.type !== "bun" &&
-        dispatch({ type: SET_CONSTRUCTOR_ELEMENT, payload: item });
+        dispatch({ type: SET_CONSTRUCTOR_ELEMENT, payload: {
+          ...item,
+          uuid: uuidv4()
+      } });
     },
   });
 
@@ -111,7 +117,7 @@ const BurgerConstructor = React.memo(() => {
                   return (
                     <ConstructorElements
                       ingredient={stuff}
-                      key={uuid()}
+                      key={ stuff.uuid }
                       type="stuffing"
                       isLocked={false}
                     />
