@@ -1,41 +1,44 @@
-import React from "react";
-import orderStyles from "./order-details.module.css";
-import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useEffect, useMemo } from "react";
+import orderDetailsStyles from "./order-details.module.css";
+import doneImage from "../../images/done.svg";
+import { useSelector, useDispatch } from 'react-redux';
+import { sendOrder } from "../../services/actions/order";
 
-const OrderDetails = React.memo(() => {
-  const createdOrderNumber = useSelector(
-    (state) => state.apiDataReducer.createdOrderNumber
-  );
+export function OrderDetails() {
+  const { orderNumber } = useSelector(store => store.orderNumber);
+  const selectedIngredients = useSelector(store => store.selectedIngredients);
+
+  const dispatch = useDispatch();
+
+  let ingredientsId = useMemo(() => {
+    return selectedIngredients.ingredients.map(ingredient => ingredient._id)
+  }, [selectedIngredients]);
+
+  useEffect(() => {
+    if (selectedIngredients.ingredients !== [] && selectedIngredients.bun !== null) {
+      const bunId = selectedIngredients.bun._id;
+      ingredientsId.push(bunId);
+      ingredientsId.unshift(bunId)
+      dispatch(sendOrder(ingredientsId));
+    }
+  }, [dispatch, selectedIngredients, ingredientsId])
 
   return (
-    <div className={orderStyles.container}>
-      <p className={`${orderStyles.number} text text_type_digits-large`}>
-        {createdOrderNumber}
+    <>
+      <h2
+        className={`text_type_digits-large mt-15 mb-8 ${orderDetailsStyles.number}`}
+      >
+        {orderNumber}
+      </h2>
+      <p className="text text_type_main-medium mb-15">идентификатор заказа</p>
+      <img src={doneImage} alt="done" />
+      <p className="text text_type_main-default mt-15 mb-2">
+        Ваш заказ начали готовить
       </p>
-      <p className={`${orderStyles.caption} text text_type_main-medium`}>
-        идентификатор заказа
+      <p className="text text_type_main-default text_color_inactive mb-30">
+        Дождитесь готовности на орбитальной станции
       </p>
-      <div className={orderStyles.done}>
-        <CheckMarkIcon type="primary" />
-      </div>
-      <div className={orderStyles.confirmationContainer}>
-        <p className={`${orderStyles.paragraph} text text_type_main-default`}>
-          Ваш заказ начали готовить
-        </p>
-        <p
-          className={`${orderStyles.paragraph} text text_type_main-default text_color_inactive`}
-        >
-          Дождитесь готовности на орбитальной станции
-        </p>
-      </div>
-    </div>
+    </>
   );
-});
+}
 
-OrderDetails.propTypes = {
-  orderData: PropTypes.number,
-};
-
-export default OrderDetails;

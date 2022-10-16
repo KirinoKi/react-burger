@@ -1,46 +1,110 @@
-.main {
-  grid-area: ingredients;
-  max-width: 600px;
-  justify-self: flex-end;
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 272px;
+    position: relative;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
 }
 
-.title {
-  padding-top: 20px;
-  text-align: left;
-  padding-bottom: 20px;
+.tabs {
+    display: flex;
 }
 
-.ingredientSectionName {
-  padding-bottom: 24px;
-  padding-top: 40px;
+.counter {
+    position: absolute;
 }
 
-.ingredientsContainer {
-  overflow-y: scroll;
-  max-height: 300px;
+.name {
+    max-width: 272px;
+    text-align: center;
+    min-height: 48px;
 }
 
-.ingredientsContainer::-webkit-scrollbar {
-  width: 8px;
+.image {
+    width: 240px;
+    height: 120px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
-.ingredientsContainer::-webkit-scrollbar-track {
-  background: #2f2f37;
+.items {
+    display: grid;
+    grid-template-columns: minmax(max-content, max-content) minmax(max-content, max-content);
+    row-gap: 32px;
+    column-gap: 24px;
+    justify-content: space-between;
 }
 
-.ingredientsContainer::-webkit-scrollbar-thumb {
-  background: #8585ad;
+.price {
+    display: grid;
+    column-gap: 8px;
+    grid-template-columns: minmax(max-content, max-content) minmax(max-content, max-content);
+    align-items: center;
 }
 
-.cardsContainer {
-  margin: 0;
-  padding: 0 8px 0 16px;
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+.section {
+    overflow-y: scroll;
+    max-height: 756px;
 }
 
-.scroll {
-  
+.section::-webkit-scrollbar {
+    width: 8px;
 }
+
+.section::-webkit-scrollbar-thumb {
+    background-color: #8585AD;
+    border: 3px solid #8585AD;
+    height: 492px;
+}
+
+.section::-webkit-scrollbar-track {
+    width: 8px;
+    background-color: #2F2F37;
+    margin-bottom: 50px;
+}
+
+@media screen and (max-width: 1920px) {
+    .section {
+        max-height: 715px;
+    }
+
+    .section::-webkit-scrollbar-thumb {
+        height: 492px;
+    }
+}
+
+@media screen and (max-width: 1600px) {
+    .section {
+        max-height: 580px;
+    }
+
+    .section::-webkit-scrollbar-thumb {
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    .section {
+        max-height: 600px;
+    }
+}
+
+@media screen and (max-width: 1366px) {
+    .section {
+        max-height: 468px;
+    }
+
+    .section::-webkit-scrollbar-thumb {
+        height: 200px;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .section {
+        max-height: 400px;
+    }
+}
+

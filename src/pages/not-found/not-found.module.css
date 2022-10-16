@@ -1,0 +1,20 @@
+.conatiner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 480px;
+  margin: 0 auto 0 auto;
+  padding-top: 100px;
+}
+
+
+.link {
+  text-decoration: none;
+  color: #4C4CFF;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+

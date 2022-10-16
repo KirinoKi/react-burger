@@ -1,0 +1,42 @@
+.conatiner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 480px;
+  margin: 0 auto 0 auto;
+  padding-top: 180px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  max-width: 480px;
+  width: 480px;
+}
+
+.form div {
+  width: 100%;
+}
+
+.form div div div {
+  max-width: 24px;
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+}
+
+.link {
+  text-decoration: none;
+  color: #4C4CFF;
+}
+
+.link:hover {
+  opacity: 0.8;
+}
+
