@@ -90,21 +90,6 @@ export function BurgerIngredients() {
   );
 }
 
-<<<<<<< Updated upstream
-  const currentTab = useSelector((state) => state.tabReducer.currentTab);
-  const bunRef = useRef();
-  const sauceRef = useRef();
-  const stuffingRef = useRef();
-
-  const onTabClick = (evt) => {
-    dispatch({
-      type: TAB_SWITCH,
-      value: evt,
-    });
-    const paragraph = document.getElementById(evt);
-    paragraph.scrollIntoView({ behavior: "smooth" });
-  };
-=======
 const IngredientsCategory = forwardRef(({ name, category, id }, ref) => {
   return (
     <div ref={ref}>
@@ -153,7 +138,6 @@ const Product = ({ card }) => {
     item: { id }
   });
 
->>>>>>> Stashed changes
 
   return (
     <Link to={{ pathname: `/ingredients/${id}`, state: { background: location } }}
@@ -183,6 +167,7 @@ const Product = ({ card }) => {
   );
 }
 
+// Проверка данных
 ProductList.propTypes = {
   category: PropTypes.arrayOf(type).isRequired
 }

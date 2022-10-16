@@ -6,27 +6,6 @@ import {
   ConstructorElement,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-<<<<<<< Updated upstream
-import ConstructorElements from "../constructor-elements/constructor-elements";
-import Modal from "../modal/modal";
-import OrderDetails from "../order-details/order-details";
-import { getOrderNumber } from "../../services/actions/api-data";
-import { useDispatch, useSelector } from "react-redux";
-import { RESET_ORDER_NUMBER } from "../../services/actions/modal";
-import { useDrop } from "react-dnd";
-import {
-  SET_CONSTRUCTOR_ELEMENT,
-  FILTER_BUNS,
-  SET_TOTAL_PRICE,
-  RESET_TOTAL_PRICE,
-  SET_BUNS,
-  SET_ORDER_INGREDIENTS,
-} from "../../services/actions/drop-container";
-import { Reorder } from "framer-motion";
-import { v4 as uuidv4 } from 'uuid';
-
-const BurgerConstructor = React.memo(() => {
-=======
 import { type } from "../../utils/types";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from 'react-redux';
@@ -37,29 +16,9 @@ import { addToConstructorBun, addToConstructorIngredient, deleteIngredientFromCo
 export function BurgerConstructor({ onClick }) {
   const { bun, ingredients } = useSelector(store => store.selectedIngredients);
   const allIngredients = useSelector(store => store.ingredientsList.ingredients);
->>>>>>> Stashed changes
   const dispatch = useDispatch();
 
   const [, dropTarget] = useDrop({
-<<<<<<< Updated upstream
-    accept: "items",
-    drop: (item) => {
-      item.type === "bun" && dispatch({ type: SET_BUNS, payload: {
-        ...item,
-        uuid: uuidv4()
-    } });
-      buns.length &&
-        item.type !== "bun" &&
-        dispatch({ type: SET_CONSTRUCTOR_ELEMENT, payload: {
-          ...item,
-          uuid: uuidv4()
-      } });
-    },
-  });
-
-  const constructorElements = useSelector(
-    (state) => state.dropContainerReducer.constructorElements
-=======
     accept: 'ingredient',
     drop(item) {
       const draggedCard = allIngredients.find((el) => el._id === item.id);
@@ -129,7 +88,6 @@ function ProductList() {
         <ProductCard card={card} key={card.id} index={index} />
       ))}
     </section>
->>>>>>> Stashed changes
   );
 }
 
@@ -207,60 +165,10 @@ function MakeAnOrder({ onClick }) {
   }, [constructorItems]);
 
   return (
-<<<<<<< Updated upstream
-    <section className={BurgerConstructorStyles.main}>
-      <div className={BurgerConstructorStyles.drag} ref={dropTarget}>
-        {buns.length ? (
-          <>
-            <ConstructorElements
-              type="top"
-              ingredient={buns[0]}
-              isLocked={true}
-            />
-            <Reorder.Group
-              className={BurgerConstructorStyles.reorder}
-              axis="y"
-              onReorder={setItems}
-              values={items}
-            >
-              <div className={BurgerConstructorStyles.scrollable}>
-                {items.map((stuff) => {
-                  return (
-                    <ConstructorElements
-                      ingredient={stuff}
-                      key={ stuff.uuid }
-                      type="stuffing"
-                      isLocked={false}
-                    />
-                  );
-                })}
-              </div>
-            </Reorder.Group>
-            <ConstructorElements
-              type="bottom"
-              ingredient={buns[0]}
-              isLocked={true}
-            />
-          </>
-        ) : (
-          <>
-            <div className={BurgerConstructorStyles.topBun}></div>
-            <div className={BurgerConstructorStyles.stuff}>
-              <p
-                className={`${BurgerConstructorStyles.choose} text text_type_main-large`}
-              >
-                Пожалуйста, выберите булочки
-              </p>
-            </div>
-            <div className={BurgerConstructorStyles.bottomBun}></div>
-          </>
-        )}
-=======
     <section className={`mr-4 ${burgerConstructorStyles.order}`}>
       <div className={burgerConstructorStyles.sum}>
         <p className="text text_type_digits-medium mr-2">{price}</p>
         <CurrencyIcon type="primary" />
->>>>>>> Stashed changes
       </div>
       {!constructorItems.bun ? (
         <Button type="primary" size="large" onClick={onClick} disabled>
@@ -274,6 +182,7 @@ function MakeAnOrder({ onClick }) {
   );
 }
 
+// Проверка данных
 BurgerConstructor.propTypes = {
   onClick: PropTypes.func
 };
