@@ -1,31 +1,26 @@
-.root {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background: #1C1C21;
+.main {
+  padding: 20px;
+  width: 600px;
+  height: 600px;
+  background: #1c1c21;
   border: 1px solid rgba(76, 76, 255, 0.2);
-  box-sizing: border-box;
-  box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
+  box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04),
+    0px 0px 1px rgba(0, 0, 0, 0.04);
   border-radius: 40px;
-  transform: translateX(-50%) translateY(-50%);
-  z-index: 3;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  height: 64px;
-  width: 640px;
-}
-
-.header h2 {
-  margin: 0;
+  position: relative;
+  box-sizing: border-box;
+  cursor: default;
 }
 
 .closeButton {
-  margin-left: auto;
-  border: none;
-  outline: none;
+  padding: 0;
+  border: 0;
   background-color: transparent;
+  position: absolute;
+  top: 60px;
+  right: 40px;
   cursor: pointer;
+}
+.closeButton:hover {
+  opacity: 0.6;
 }

@@ -1,35 +1,46 @@
-.root {
-  display: flex;
-  flex-direction: column;
+.main {
+  grid-area: ingredients;
   max-width: 600px;
-  width: 100%;
+  justify-self: flex-end;
 }
 
 .title {
+  padding-top: 20px;
   text-align: left;
-  color: #F2F2F3;
-} 
-
-.tabs {
-display: flex;
+  padding-bottom: 20px;
 }
 
-.ingredients {
-  flex: 1;
-  overflow-y: auto;
+.ingredientSectionName {
+  padding-bottom: 24px;
+  padding-top: 40px;
 }
 
-.ingredients::-webkit-scrollbar {
-	width: 8px;
-  height: 492px;
+.ingredientsContainer {
+  overflow-y: scroll;
+  max-height: 300px;
 }
 
-.ingredients::-webkit-scrollbar-track {
-	background: #2F2F37;
+.ingredientsContainer::-webkit-scrollbar {
+  width: 8px;
 }
 
-.ingredients::-webkit-scrollbar-thumb {
-	background: #8585AD;
-	border: 3px solid #2F2F37;
-	border-radius: 6px;
+.ingredientsContainer::-webkit-scrollbar-track {
+  background: #2f2f37;
+}
+
+.ingredientsContainer::-webkit-scrollbar-thumb {
+  background: #8585ad;
+}
+
+.cardsContainer {
+  margin: 0;
+  padding: 0 8px 0 16px;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.scroll {
+  
 }

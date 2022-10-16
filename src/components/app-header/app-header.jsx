@@ -1,34 +1,44 @@
-import styles from './app-header.module.css';
-
-import { 
+import {
+  Logo,
   BurgerIcon,
   ListIcon,
-  Logo,
-  ProfileIcon
-} from '@ya.praktikum/react-developer-burger-ui-components';
+  ProfileIcon,
+} from "@ya.praktikum/react-developer-burger-ui-components";
+import AppHeaderStyle from "./app-header.module.css";
 
-function AppHeader() {
+export default function AppHeader() {
   return (
-    <header className={`${styles.header} pt-4 pb-4`}>
-      <nav className={styles.nav}>
-        <a href="/" className={`${styles.button} pt-4 pr-5 pb-4 pl-5 mr-2`}>
-          <BurgerIcon type="primary" />
-          <span className={`${styles.button_text} ${styles.button_text_active} ml-2 text_type_main-default`}>Конструктор</span>
-        </a>
-        <a href="/" className={`${styles.button} pt-4 pr-5 pb-4 pl-5 mr-2`}>
-          <ListIcon type="secondary" />
-          <span className={`${styles.button_text} ml-2 text_type_main-default`}>Лента заказов</span>
-        </a>
-        <a href="/" className={styles.logo}>
-          <Logo />
-        </a>
-        <a href="/" className={`${styles.button} pt-4 pr-5 pb-4 pl-5 mr-2`}>
+    <header className={AppHeaderStyle.main}>
+      <ul className={AppHeaderStyle.nav}>
+        <ul className={AppHeaderStyle.navItemContainer}>
+          <li className={`${AppHeaderStyle.navItem} text text_type_main-default`}>
+            <BurgerIcon type="primary" />
+            <a className={AppHeaderStyle.link} href="index.html">
+              Конструктор
+            </a>
+          </li>
+
+          <li className={`${AppHeaderStyle.navItem} text text_type_main-default text_color_inactive`}>
+            <ListIcon type="secondary" />
+            <a className={AppHeaderStyle.link} href="index.html">
+              Лента заказов
+            </a>
+          </li>
+        </ul>
+
+        <li className={`${AppHeaderStyle.navItem} ${AppHeaderStyle.navItem_type_logo}`}>
+          <a className={AppHeaderStyle.link} href="index.html">
+            <Logo />
+          </a>
+        </li>
+
+        <li className={`${AppHeaderStyle.navItem} text text_type_main-default text_color_inactive`}>
           <ProfileIcon type="secondary" />
-          <span className={`${styles.button_text} ml-2 text_type_main-default`}>Личный кабинет</span>
-        </a>
-      </nav>
+          <a className={AppHeaderStyle.link} href="index.html">
+            Личный кабинет
+          </a>
+        </li>
+      </ul>
     </header>
   );
 }
-
-export default AppHeader;

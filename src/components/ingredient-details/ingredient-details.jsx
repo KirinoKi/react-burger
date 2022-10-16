@@ -1,38 +1,50 @@
-import styles from './ingredient-details.module.css';
+import detailsStyles from "./ingredient-details.module.css";
+import { useSelector } from "react-redux";
 
-import ingredientsTypes from '../../utils/types';
-
-function IngredientDetails(props) {
+export default function IngredientDetails() {
+  
+  const currentModalIngredient = useSelector(
+    (state) => state.modalReducer.currentModalIngredient
+  );
 
   return (
-    <section className={styles.root}>
-      <img src={props.currentIngredient.image_large} alt={props.currentIngredient.name} />
-      <h4 className="text_type_main-medium mb-8 mt-4">{props.currentIngredient.name}</h4>
-      <div className={`${styles.info}`}>
-        <div className={`${styles.infoItem} mr-5`}>
-          <span className="text_type_main-default mb-2">Калории,ккал</span>
-          <span className="text_type_digits-default">{props.currentIngredient.calories}</span>
-        </div>
-        <div className={`${styles.infoItem} mr-5`}>
-          <span className="text_type_main-default mb-2">Белки, г</span>
-          <span className="text_type_digits-default">{props.currentIngredient.proteins}</span>
-        </div>
-        <div className={`${styles.infoItem} mr-5`}>
-          <span className="text_type_main-default mb-2">Жиры, г</span>
-          <span className="text_type_digits-default">{props.currentIngredient.fat}</span>
-        </div>
-        <div className={`${styles.infoItem}`}>
-          <span className="text_type_main-default mb-2">Углеводы, г</span>
-          <span className="text_type_digits-default">{props.currentIngredient.carbohydrates}</span>
-        </div>
-      </div>
-    </section>
-  )
-};
+    <div className={detailsStyles.main}>
+      <h2 className={`${detailsStyles.title} text text_type_main-large`}>
+        Детали ингредиента
+      </h2>
+      <figure className={detailsStyles.imgContainer}>
+        <img
+          className={detailsStyles.img}
+          src={currentModalIngredient.image_large}
+          alt={currentModalIngredient.name}
+        />
+        <figcaption
+          className={`${detailsStyles.caption} text text_type_main-medium`}
+        >
+          {currentModalIngredient.name}
+        </figcaption>
+      </figure>
 
-
-IngredientDetails.propTypes = { 
-  currentIngredient: ingredientsTypes.isRequired
-};
-
-export default IngredientDetails;
+      <table
+        className={`${detailsStyles.meatTable} text text_type_main-small text_color_inactive`}
+      >
+        <thead>
+          <tr>
+            <td className={detailsStyles.meatCell}>Калории,ккал</td>
+            <td>Белки, г</td>
+            <td>Жиры, г</td>
+            <td>Углеводы, г</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{currentModalIngredient.calories}</td>
+            <td>{currentModalIngredient.proteins}</td>
+            <td>{currentModalIngredient.fat}</td>
+            <td>{currentModalIngredient.carbohydrates}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}
