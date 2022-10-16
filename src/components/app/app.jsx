@@ -23,6 +23,7 @@ import { getUser } from '../../services/actions/auth';
 import { refreshToken } from '../../services/actions/auth';
 import { getCookie } from '../../utils/utils';
 import { useLocation } from "react-router-dom";
+import { getIngredients } from "../../services/actions/ingredients";
 
 export function App() {
   const { isIngredientDetailsOpened } = useSelector(store => store.ingredientData);
@@ -61,6 +62,7 @@ export function App() {
     if (cookie && updateTokenSuccess && refreshTokenData && !user) {
       dispatch(getUser());
     }
+    dispatch(getIngredients())
   }, [dispatch, refreshTokenData, user, cookie, updateTokenSuccess]);
 
   const location = useLocation();
@@ -108,9 +110,7 @@ export function App() {
         <Route path="/ingredients/:id">
           <Modal
             title="Детали ингредиента"
-            onOverlayClick={closeAllModals}
-            close={closeAllModals}
-            onCloseClick={closeAllModals}
+            onClose={closeAllModals}
           >
             <IngredientDetails />
           </Modal>
@@ -120,9 +120,7 @@ export function App() {
         isOrderDetailsOpened &&
         <Modal
           title=""
-          onOverlayClick={closeAllModals}
-          close={closeAllModals}
-          onCloseClick={closeAllModals}
+          onClose={closeAllModals}
         >
           <OrderDetails />
         </Modal>

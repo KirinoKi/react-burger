@@ -9,15 +9,13 @@ const modalsContainer = document.querySelector("#modals");
 
 export function Modal({
   title,
-  onOverlayClick,
-  close,
-  onCloseClick,
+  onClose,
   children,
 }) {
 
   const handleEscKeydown = (evt) => {
     if (evt.key === 'Escape') {
-      close()
+    onClose()
     }
   }
 
@@ -36,12 +34,12 @@ export function Modal({
         <div className={modalStyles.title}>
           <h2 className="text text_type_main-large ml-10">{title}</h2>
         </div>
-        <div className={modalStyles.close} onClick={onCloseClick}>
+        <div className={modalStyles.close} onClick={onClose}>
           <CloseIcon type="primary" />
         </div>
         {children}
       </div>
-      <ModalOverlay onClick={onOverlayClick} />
+      <ModalOverlay onClick={onClose} />
     </>,
     modalsContainer
   );

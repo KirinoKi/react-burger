@@ -1,7 +1,7 @@
 import { PasswordInput, Button, Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import loginStyles from "./login.module.css";
 import { Link, Redirect, useLocation } from 'react-router-dom';
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from "../../services/actions/auth";
 
@@ -13,7 +13,6 @@ export function LoginPage() {
   }
 
   const [emailValue, setEmailValue] = useState('')
-  const inputRef = useRef(null)
 
   const dispatch = useDispatch();
 
@@ -45,7 +44,6 @@ export function LoginPage() {
           value={emailValue}
           name={'name'}
           error={false}
-          ref={inputRef}
           errorText={'Ошибка ввода e-mail'}
           size={'default'}
         />

@@ -4,19 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from "react-router-dom";
 import { Preloader } from "../preloader/preloader";
 import { useEffect } from "react";
-import { getIngredients } from "../../services/actions/ingredients";
 
 export function IngredientDetails() {
-  let { id } = useParams();
+  const { id } = useParams();
   const ingredientsData = useSelector(store => store.ingredientsList.ingredients);
-  let ingredientData = ingredientsData.find((el) => el._id === id);
+  const ingredientData = ingredientsData.find((el) => el._id === id);
   const dispatch = useDispatch();
 
   const history = useHistory();
 
   useEffect(() => {
     if (!ingredientData) {
-      dispatch(getIngredients());
       history.replace(`/ingredients/${id}`);
     }
   }, [dispatch, ingredientData])
