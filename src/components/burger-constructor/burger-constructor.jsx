@@ -97,7 +97,7 @@ function ProductCard({ card, index }) {
   const ref = useRef(null);
   const dispatch = useDispatch();
 
-  const [{ isDragging }, dragRef] = useDrag(() => ({
+  const [ dragRef ] = useDrag(() => ({
     type: "ingredient-item",
     item: { id },
     collect: (monitor) => ({

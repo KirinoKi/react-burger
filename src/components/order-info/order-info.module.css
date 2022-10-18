@@ -1,0 +1,111 @@
+.container {
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto 40px auto;
+  width: 100%;
+}
+
+.order_number {
+  align-self: center;
+}
+
+.technical_info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.price_container {
+  display: flex;
+  align-items: center;
+}
+
+.item {
+  width: 64px;
+  height: 64px;
+  border-radius: 100px;
+  background: #131316;
+  box-sizing: border-box;
+  background-image: url(https://code.s3.yandex.net/react/code/bun-01.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.border {
+  border-radius: 100px;
+  background: linear-gradient(to right, rgba(128, 26, 178, 1), rgba(76, 76, 255, 1));
+  padding: 2px;
+}
+
+.ingredients_section {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  overflow-y: scroll;
+  max-height: 312px;
+  padding-right: 24px;
+}
+
+.ingredient_info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ingredients_section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ingredients_section::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
+  border: 3px solid #8585AD;
+  height: 140px;
+}
+
+.ingredients_section::-webkit-scrollbar-track {
+  width: 8px;
+  background-color: #2F2F37;
+}
+
+.qty_container {
+  display: flex;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  max-width: 320px;
+}
+
+.done {
+  color: #00CCCC;
+}
+
+.border {
+  border-radius: 100px;
+  background: linear-gradient(to right, rgba(128, 26, 178, 1), rgba(76, 76, 255, 1));
+  padding: 2px;
+}
+
+.item {
+  width: 64px;
+  height: 64px;
+  border-radius: 100px;
+  background: #131316;
+  box-sizing: border-box;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+

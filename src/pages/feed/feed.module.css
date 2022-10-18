@@ -1,0 +1,95 @@
+.page {
+  display: grid;
+  column-gap: 60px;
+  grid-template-columns: minmax(max-content, max-content) minmax(max-content, max-content);
+  justify-content: center;
+  align-self: center;
+}
+
+.section {
+  overflow-y: scroll;
+  max-height: 870px;
+  padding-right: 8px;
+}
+
+.section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.section::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
+  border: 3px solid #8585AD;
+  height: 492px;
+}
+
+.section::-webkit-scrollbar-track {
+  width: 8px;
+  background-color: #2F2F37;
+  margin-bottom: 60px;
+}
+
+.feed_section {
+  width: 608px;
+}
+
+@media screen and (max-width: 1920px) {
+  .section {
+      max-height: 550px;
+  }
+
+  .section::-webkit-scrollbar-thumb {
+      height: 200px;
+  }
+}
+
+.status_container {
+  margin-top: 100px;
+  max-width: 580px;
+  display: grid;
+  row-gap: 60px;
+  grid-template-rows: minmax(max-content, max-content) minmax(max-content, max-content);
+}
+
+.board{
+  display: flex;
+  justify-content: space-between;
+}
+
+.status_lists {
+  min-width: 272px;
+}
+
+.done_list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  color: #00CCCC;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 153px;
+}
+
+.inprocess_list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 153px;
+}
+
+.done_qty {
+  color: #F2F2F3;
+  text-shadow: 0 0 16px rgba(51, 51, 255, 0.25), 0 0 8px rgba(51, 51, 255, 0.25), 0 4px 32px rgba(51, 51, 255, 0.5);
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+}

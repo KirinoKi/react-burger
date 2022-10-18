@@ -6,6 +6,7 @@ import { NavLink, useRouteMatch } from "react-router-dom";
 export const AppHeader = memo(() => {
   const isMathConstructor = !!useRouteMatch({ path: '/' , exact: true });
   const isMathProfile = !!useRouteMatch("/profile");
+  const isMathFeed = !!useRouteMatch("/feed");
 
   return (
     <div className={appHeaderStyles.container}>
@@ -19,14 +20,16 @@ export const AppHeader = memo(() => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="#" className={appHeaderStyles.item}>
-                <ListIcon type='secondary' />
-                <p className="text text_type_main-default text_color_inactive pl-2 pt-4 pb-4 pr-5">Лента заказов</p>
+              <NavLink to="/feed" className={appHeaderStyles.item} activeClassName={appHeaderStyles.activeLink}>
+                <ListIcon type={isMathFeed ? 'primary' : 'secondary'}  />
+                <p className="text text_type_main-default pl-2 pt-4 pb-4 pr-5">Лента заказов</p>
               </NavLink>
             </li>
           </ul>
         </nav>
-        <Logo />
+        <NavLink exact to="/" >
+          <Logo />
+        </NavLink>
         <NavLink className={appHeaderStyles.item} activeClassName={appHeaderStyles.activeLink} to="/profile">
           <ProfileIcon type={isMathProfile ? 'primary' : 'secondary'} />
           <p className="text text_type_main-default ml-2 mt-4 mb-4 mr-5">Личный кабинет</p>
@@ -35,9 +38,6 @@ export const AppHeader = memo(() => {
     </div>
   )
 })
-
-
-
 
 
 

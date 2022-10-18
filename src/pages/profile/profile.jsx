@@ -3,9 +3,14 @@ import { Input, Button } from "@ya.praktikum/react-developer-burger-ui-component
 import { useState, useRef, useEffect, useCallback } from "react";
 import { NavLink } from 'react-router-dom';
 import { Switch, Route } from 'react-router-dom';
-import { OrdersPage } from "./orders/orders";
+import { OrdersPage } from "./orders-history/orders-history";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout, getUser, updateUser } from "../../services/actions/auth";
+import { NotFound } from "../not-found/not-found";
+import { useRouteMatch } from "react-router-dom";
+import { WS_AUTH_CONNECTION_START, WS_AUTH_CONNECTION_CLOSED } from "../../services/actions/types";
+import { OrderInformation } from "../../components/order-info/order-info";
+import { useLocation } from "react-router-dom";
 
 export function ProfilePage() {
   const user = useSelector(store => store.auth.user);
@@ -80,29 +85,53 @@ export function ProfilePage() {
 
   useEffect(() => {
     dispatch(getUser());
-  }, [dispatch])
+    dispatch({ type: WS_AUTH_CONNECTION_START });
+    return () => {
+      dispatch({ type: WS_AUTH_CONNECTION_CLOSED })
+    }
+  }, [dispatch]);
+
+  const isMathPersonalInfo = !!useRouteMatch({ path: '/profile', exact: true });
+  const isMatchOrderHistory = !!useRouteMatch({ path: '/profile/orders', exact: true });
+  const isMatchOrderDetails = !!useRouteMatch({ path: '/profile/orders/:id' });
+
+  const location = useLocation();
+  const background = location.state?.background;
 
   return (
     <div className={styles.wrapper}>
-      <nav>
-        <ul className={`mb-20 ${styles.list}`}>
-          <NavLink exact to="/profile" className={`text text_type_main-medium ${styles.link}`} activeClassName={styles.activeLink}>
-            Профиль
-          </NavLink>
-          <NavLink exact to="/profile/orders" className={`text text_type_main-medium ${styles.link}`} activeClassName={styles.activeLink}>
-            История заказов
-          </NavLink>
-          <button  className={`text text_type_main-medium ${styles.button}`} onClick={logoutSubmit} type="secondary" size="large">
-            Выход
-          </button>
-        </ul>
-        <p className={`text text_type_main-default text_color_inactive ${styles.additional_text}`}>
-          В этом разделе вы можете изменить&nbsp;свои персональные данные
-        </p>
-      </nav>
-      <Switch>
+      {!isMatchOrderDetails &&
+        <nav>
+          <ul className={`mb-20 ${styles.list}`}>
+            <NavLink exact to="/profile" className={`text text_type_main-medium ${styles.link}`} activeClassName={styles.activeLink}>
+              Профиль
+            </NavLink>
+            <NavLink exact to="/profile/orders" className={`text text_type_main-medium ${styles.link}`} activeClassName={styles.activeLink}>
+              История заказов
+            </NavLink>
+            <button className={`text text_type_main-medium ${styles.button}`} onClick={logoutSubmit} type="secondary" size="large">
+              Выход
+            </button>
+          </ul>
+          {isMathPersonalInfo && (
+            <p className={`text text_type_main-default text_color_inactive ${styles.additional_text}`}>
+              В этом разделе вы можете изменить&nbsp;свои персональные данные
+            </p>
+          )}
+          {isMatchOrderHistory && (
+            <p className={`text text_type_main-default text_color_inactive ${styles.additional_text}`}>
+              В этом разделе вы можете просмотреть свою историю заказов
+            </p>
+          )}
+        </nav>}
+      <Switch location={background || location}>
         <Route exact path="/profile/orders">
           <OrdersPage />
+        </Route>
+        <Route path="/profile/orders/:id">
+          <div className={styles.order_page}>
+            <OrderInformation />
+          </div>
         </Route>
         <Route exact path="/profile">
           <form className={styles.form} onSubmit={saveNewUserData}>
@@ -161,6 +190,9 @@ export function ProfilePage() {
                 </Button>
               </div>}
           </form>
+        </Route>
+        <Route>
+          <NotFound />
         </Route>
       </Switch>
     </div>
