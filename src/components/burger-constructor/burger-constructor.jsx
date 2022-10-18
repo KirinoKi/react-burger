@@ -97,7 +97,7 @@ function ProductCard({ card, index }) {
   const ref = useRef(null);
   const dispatch = useDispatch();
 
-  const [ dragRef ] = useDrag(() => ({
+  const [{ isDragging }, dragRef] = useDrag(() => ({
     type: "ingredient-item",
     item: { id },
     collect: (monitor) => ({
@@ -182,7 +182,6 @@ function MakeAnOrder({ onClick }) {
   );
 }
 
-// Проверка данных
 BurgerConstructor.propTypes = {
   onClick: PropTypes.func
 };
