@@ -1,41 +1,54 @@
 import { useEffect } from "react";
+import ReactDOM from "react-dom";
 import modalStyles from "./modal.module.css";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { ModalOverlay } from "../modal-overlay/modal-overlay";
 import PropTypes from "prop-types";
-import { createPortal } from "react-dom";
-import ModalOverlay from "../modal-overlay/modal-overlay";
-import { modalsRoot } from "../../utils/data";
 
-export default function Modal({ children, onClose, isOpened }) {
-  useEffect(() => {
-    const handleEscClose = (evt) => {
-      if (evt.key === "Escape") {
-        onClose();
-      }
-    };
-    if (isOpened) {
-      document.addEventListener("keydown", handleEscClose);
-      return () => {
-        document.removeEventListener("keydown", handleEscClose);
-      };
+const modalsContainer = document.querySelector("#modals");
+
+export function Modal({
+  title,
+  onClose,
+  children,
+}) {
+
+  const handleEscKeydown = (evt) => {
+    if (evt.key === 'Escape') {
+    onClose()
     }
-  }, [isOpened, onClose]);
+  }
 
-  return createPortal(
-    <ModalOverlay onClose={onClose}>
-      <div className={modalStyles.main}>
-        <button className={modalStyles.closeButton} onClick={onClose}>
+  useEffect(() => {
+    document.addEventListener("keydown", handleEscKeydown);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscKeydown);
+    };
+  }, []);
+
+
+  return ReactDOM.createPortal(
+    <>
+      <div className={modalStyles.modal}>
+        <div className={modalStyles.title}>
+          <h2 className="text text_type_main-large ml-10">{title}</h2>
+        </div>
+        <div className={modalStyles.close} onClick={onClose}>
           <CloseIcon type="primary" />
-        </button>
+        </div>
         {children}
       </div>
-    </ModalOverlay>,
-    modalsRoot
+      <ModalOverlay onClick={onClose} />
+    </>,
+    modalsContainer
   );
 }
 
 Modal.propTypes = {
-  children: PropTypes.element.isRequired,
-  onClose: PropTypes.func.isRequired,
-  isOpened: PropTypes.bool.isRequired,
+  title: PropTypes.string,
+  onOverlayClick: PropTypes.func,
+  onEscKeydown: PropTypes.func,
+  onCloseClick: PropTypes.func,
+  children: PropTypes.node
 };
