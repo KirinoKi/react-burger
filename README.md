@@ -12,5 +12,5 @@ It is also possible to reorder innner ingredient in the burger constructor.
 
 In this project authorization is configured. User can place an order, if he has an account and is authorized.
 
-[Link](https://geniav.github.io/react-burger/)
+[Link](https://kirinoki.github.io/react-burger/)
 -------------------------
