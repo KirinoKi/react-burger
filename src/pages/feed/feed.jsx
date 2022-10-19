@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Order } from '../../components/order/order';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from '../../services/actions/types';
+import { WS_CONNECTION_START, WS_CONNECTION_CLOSE } from '../../services/actions/types';
 import { Preloader } from '../../components/preloader/preloader';
 
 export function FeedPage() {
@@ -13,7 +13,7 @@ export function FeedPage() {
     dispatch({ type: WS_CONNECTION_START, payload: '/all' });
     
     return () => {
-      dispatch({ type: WS_CONNECTION_CLOSED })
+      dispatch({ type: WS_CONNECTION_CLOSE })
     }
   }, [dispatch]);
 

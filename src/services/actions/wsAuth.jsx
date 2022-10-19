@@ -2,6 +2,7 @@ import {
   WS_AUTH_CONNECTION_SUCCESS,
   WS_AUTH_CONNECTION_ERROR,
   WS_AUTH_CONNECTION_CLOSED,
+  WS_AUTH_CONNECTION_CLOSE,
   WS_AUTH_GET_ORDERS,
   WS_AUTH_SEND_ORDERS
 } from "./types";
@@ -37,3 +38,11 @@ export const wsSendMessage = order => {
     payload: order
   };
 };
+
+
+export const wsConnectionClose = () => {
+  return {
+    type: WS_AUTH_CONNECTION_CLOSE
+  };
+};
+

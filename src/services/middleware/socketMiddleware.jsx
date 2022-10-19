@@ -6,15 +6,15 @@ export const socketMiddleware = (wsUrl, wsActions ) => {
   return store => {
     let socket = null;
 
-    const { wsInit, wsSendMessage, onOpen, onClose, onError, onMessage } = wsActions;
+    const { wsInit, wsSendMessage, onOpen, onClose, onError, onMessage, wsClose } = wsActions;
 
     return next => action => {
       const { dispatch } = store;
       const { type, payload } = action;
-      
+
 
       if (action.user && type === wsInit) {
-        socket = new WebSocket(`${wsUrl}?token=${getCookie('token')}`);
+        socket = new WebSocket(`${wsUrl}${payload}?token=${getCookie('token')}`);
       } else if (type === wsInit) {
         socket = new WebSocket(wsUrl);
       }
@@ -38,12 +38,15 @@ export const socketMiddleware = (wsUrl, wsActions ) => {
 
         socket.onclose = event => {
           dispatch({ type: onClose, payload: event });
-          socket.close();
         };
 
         if (type === wsSendMessage) {
           const orders = { ...payload };
           socket.send(JSON.stringify(orders));
+        }
+
+        if (wsClose && type === wsClose && socket) {
+          socket.close();
         }
       }
       next(action);

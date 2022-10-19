@@ -2,6 +2,7 @@ import {
   WS_CONNECTION_SUCCESS,
   WS_CONNECTION_ERROR,
   WS_CONNECTION_CLOSED,
+  WS_CONNECTION_CLOSE,
   WS_GET_ORDERS
 } from "../actions/types";
 
@@ -39,6 +40,12 @@ export const wsReducer = (state = initialState, action) => {
         orders: action.payload.orders,
         total: action.payload.total,
         totalToday: action.payload.totalToday
+      };
+
+    case WS_CONNECTION_CLOSE:
+      return {
+        ...initialState,
+        wsConnected: false
       };
     default:
       return state;
