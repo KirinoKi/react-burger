@@ -1,4 +1,4 @@
-import { getCookie } from "./utils";
+import { getCookie, setCookie } from "./utils";
 
 const API_URL = "https://norma.nomoreparties.space/api";
 
@@ -163,7 +163,7 @@ export function updateTokenRequest() {
     credentials: 'same-origin',
     headers: {
       "Content-Type": "application/json",
-      Authorization: 'Bearer ' + getCookie('token')
+      Authorization: 'Bearer ' + setCookie('token')
     },
     body: JSON.stringify({
       token: localStorage.getItem('token')

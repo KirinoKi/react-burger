@@ -2,7 +2,7 @@ import {
   getCookie
 } from "../../utils/utils";
 
-export const socketMiddleware = (wsUrl, wsActions ) => {
+export const socketMiddleware = (wsUrl, wsActions, isAuth = false ) => {
   return store => {
     let socket = null;
 
@@ -13,10 +13,13 @@ export const socketMiddleware = (wsUrl, wsActions ) => {
       const { type, payload } = action;
 
 
-      if (action.user && type === wsInit) {
-        socket = new WebSocket(`${wsUrl}${payload}?token=${getCookie('token')}`);
-      } else if (type === wsInit) {
-        socket = new WebSocket(wsUrl);
+      if (type === wsInit) {
+        if (!isAuth) {
+          socket = new WebSocket(wsUrl);
+        } else {
+          const accessToken = getCookie('token');
+          socket = new WebSocket(`${wsUrl}?token=${accessToken}`);
+        };
       }
 
       if (socket) {
@@ -46,9 +49,9 @@ export const socketMiddleware = (wsUrl, wsActions ) => {
         }
 
         if (wsClose && type === wsClose && socket) {
-          socket.close();
-        }
-      }
+        socket.close();
+       }
+     }
       next(action);
     };
   };

@@ -10,7 +10,7 @@ export function FeedPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: WS_CONNECTION_START, payload: '/all' });
+    dispatch({ type: WS_CONNECTION_START });
     
     return () => {
       dispatch({ type: WS_CONNECTION_CLOSE })
