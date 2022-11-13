@@ -13,10 +13,6 @@
     display: flex;
 }
 
-.counter {
-    position: absolute;
-}
-
 .name {
     max-width: 272px;
     text-align: center;
