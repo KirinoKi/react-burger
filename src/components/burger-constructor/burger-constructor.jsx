@@ -182,7 +182,6 @@ function MakeAnOrder({ onClick }) {
   );
 }
 
-// Проверка данных
 BurgerConstructor.propTypes = {
   onClick: PropTypes.func
 };

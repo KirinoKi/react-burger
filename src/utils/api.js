@@ -1,4 +1,4 @@
-import { getCookie } from "./utils";
+import { getCookie, setCookie } from "./utils";
 
 const API_URL = "https://norma.nomoreparties.space/api";
 
@@ -13,12 +13,18 @@ export function getIngredientsFromServer() {
 export function putAnOrder(id) {
   return fetch(`${API_URL}/orders`, {
     method: "POST",
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'same-origin',
     headers: {
       "Content-Type": "application/json",
+      Authorization: 'Bearer ' + getCookie('token')
     },
     body: JSON.stringify({
       ingredients: id
     }),
+    redirect: 'follow',
+    referrerPolicy: 'no-referrer'
   })
     .then(checkReponse)
 }
@@ -157,7 +163,7 @@ export function updateTokenRequest() {
     credentials: 'same-origin',
     headers: {
       "Content-Type": "application/json",
-      Authorization: 'Bearer ' + getCookie('token')
+      Authorization: 'Bearer ' + setCookie('token')
     },
     body: JSON.stringify({
       token: localStorage.getItem('token')
@@ -167,6 +173,3 @@ export function updateTokenRequest() {
   })
     .then(checkReponse)
 }
-
-
-
