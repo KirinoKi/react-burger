@@ -1,10 +1,11 @@
-import { PasswordInput, Button, Input } from "@ya.praktikum/react-developer-burger-ui-components";
+import { PasswordInput, Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import loginStyles from "./login.module.css";
 import { Link, Redirect, useLocation } from 'react-router-dom';
 import { useState, useRef, SetStateAction } from "react";
 import { useDispatch, useSelector } from '../../services/store';
 import { login } from "../../services/actions/auth";
 import { FunctionComponent } from "react";
+import { Button } from "../../utils/utils";
 
 export const LoginPage: FunctionComponent = () => {
   const [passwordValue, setPasswordValue] = useState<string>('')

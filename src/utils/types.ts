@@ -6,7 +6,8 @@ import { TConstructorActions } from "../services/actions/constructor";
 import { TGetIngredientsActions} from "../services/actions/ingredients";
 import { TWsActions } from "../services/actions/ws";
 import { TWsAuthActions } from "../services/actions/wsAuth";
-import {rootReducer} from "../services/roorReducer"
+import {rootReducer} from "../services/roorReducer";
+
 
 type TApplicationActions = TIngredientInModalActions
 | TPutAnPrderActions

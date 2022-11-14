@@ -1,4 +1,4 @@
-import { Button, Input} from "@ya.praktikum/react-developer-burger-ui-components";
+import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./reset-password.module.css";
 import { Link, Redirect } from 'react-router-dom';
 import { useState, useRef, SyntheticEvent } from "react";
@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from '../../services/store';
 import { resetPassword } from "../../services/actions/auth";
 import { TICons } from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons";
 import { FunctionComponent } from "react";
+import { Button } from "../../utils/utils";
 
 export const ResetPasswordPage: FunctionComponent = () => {
   const [passwordValue, setPasswordValue] = useState<string>('');

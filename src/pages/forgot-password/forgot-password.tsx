@@ -1,10 +1,11 @@
-import { Button, Input } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./forgot-password.module.css";
 import { Link, Redirect } from 'react-router-dom';
 import { useState, useRef } from "react";
 import { useDispatch, useSelector } from '../../services/store';
 import { forgotPassword } from "../../services/actions/auth";
 import { FunctionComponent } from "react";
+import { Button } from "../../utils/utils";
 
 export const ForgotPasswordPage: FunctionComponent = () => {
   const [emailValue, setEmailValue] = useState<string>('')

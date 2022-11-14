@@ -1,5 +1,5 @@
 import styles from "./profile.module.css"
-import { Input, Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { NavLink } from 'react-router-dom';
 import { Switch, Route } from 'react-router-dom';
@@ -11,6 +11,7 @@ import { useRouteMatch } from "react-router-dom";
 import { WS_AUTH_CONNECTION_START, WS_AUTH_CONNECTION_CLOSE } from "../../services/actions/types";
 import { OrderInformation } from "../../components/order-info/order-info";
 import { FunctionComponent } from "react";
+import { Button } from "../../utils/utils";
 
 export const ProfilePage: FunctionComponent = () => {
   const user = useSelector(store => store.auth.user);
@@ -76,7 +77,7 @@ export const ProfilePage: FunctionComponent = () => {
   const dispatch = useDispatch();
 
   const logoutSubmit = useCallback(
-    (e) => {
+    (e: React.ChangeEvent<any>) => {
       e.preventDefault();
       dispatch(logout());
     },

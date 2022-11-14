@@ -1,7 +1,6 @@
 import React, { useEffect, useState, memo, useMemo, forwardRef } from "react";
 import burgerIngredientsStyles from "./burger-ingredients.module.css";
 import {
-  Tab,
   CurrencyIcon,
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -11,6 +10,7 @@ import { useDrag } from "react-dnd";
 import { useLocation, Link } from "react-router-dom";
 import { TIngredientWithUniqueId } from "../../utils/types";
 import { FunctionComponent } from 'react';
+import { Tab } from "../../utils/utils";
 
 interface ITabs {
   inViewBuns: boolean;
