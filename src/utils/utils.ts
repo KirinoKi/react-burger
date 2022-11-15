@@ -16,7 +16,6 @@ import {
 } from "../services/actions/types";
 import { Button as ButtonUI, Tab as TabUI } from "@ya.praktikum/react-developer-burger-ui-components";
 import {FC, SyntheticEvent} from "react";
-import { TWs } from "./types";
 
 //Возвращение куки
 export const getCookie = (name: string) => {
@@ -101,7 +100,7 @@ export const formatDate = (date: string | Date) => {
 export const wsUrl = 'wss://norma.nomoreparties.space/orders/all';
 export const wsAuthUrl = 'wss://norma.nomoreparties.space/orders';
 
-export const wsActions: TWs = {
+export const wsActions = {
   wsInit: WS_CONNECTION_START,
   wsSendMessage: WS_SEND_ORDERS,
   onOpen: WS_CONNECTION_SUCCESS,
@@ -111,7 +110,7 @@ export const wsActions: TWs = {
   wsClose: WS_CONNECTION_CLOSE,
 };
 
-export const wsAuthActions: TWs = {
+export const wsAuthActions = {
   wsInit: WS_AUTH_CONNECTION_START,
   wsSendMessage: WS_AUTH_SEND_ORDERS,
   onOpen: WS_AUTH_CONNECTION_SUCCESS,
