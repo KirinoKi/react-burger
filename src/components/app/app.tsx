@@ -21,7 +21,7 @@ import { ProfilePage } from '../../pages/profile/profile';
 import { ProtectedRoute } from '../protected-route';
 import { getUser } from '../../services/actions/auth';
 import { refreshToken } from '../../services/actions/auth';
-import { getCookie } from '../../utils/utils';
+import { getCookie, TLocation } from '../../utils/utils';
 import { useLocation } from "react-router-dom";
 import { FeedPage } from '../../pages/feed/feed';
 import { OrderInformation } from '../order-info/order-info';
@@ -72,17 +72,7 @@ export function App() {
     dispatch(getIngredients());
   }, [dispatch]);
 
-  type TLocation = {
-    background: {
-      pathname: string;
-      search: string;
-      hash: string;
-      state: null;
-      key: string;
-    }
-    from: string;
-    state?: object;
-  };
+
 
   const location = useLocation<TLocation>();
   const background = location.state?.background;

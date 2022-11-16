@@ -1,16 +1,16 @@
 import { PasswordInput, Input } from "@ya.praktikum/react-developer-burger-ui-components";
 import loginStyles from "./login.module.css";
 import { Link, Redirect, useLocation } from 'react-router-dom';
-import { useState, useRef, SetStateAction } from "react";
+import { useState, useRef } from "react";
 import { useDispatch, useSelector } from '../../services/store';
 import { login } from "../../services/actions/auth";
 import { FunctionComponent } from "react";
-import { Button } from "../../utils/utils";
+import { Button, TLocation } from "../../utils/utils";
 
 export const LoginPage: FunctionComponent = () => {
   const [passwordValue, setPasswordValue] = useState<string>('')
 
-  const onChangePassword = (e: { target: { value: SetStateAction<string>; }; }) => {
+  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordValue(e.target.value)
   }
 
@@ -21,15 +21,11 @@ export const LoginPage: FunctionComponent = () => {
 
   const user = useSelector(store => store.auth.user);
 
-  const submitLogin = (e: { preventDefault: () => void; }) => {
+  const submitLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(login(emailValue, passwordValue));
   }
 
-  type TLocation = {
-    from: string;
-    state?: object;
-  }
 
   let location = useLocation<TLocation>();
 

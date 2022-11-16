@@ -19,7 +19,7 @@ export function Modal({
   children,
 }: IModal) {
 
-  const handleEscKeydown = (evt: {key: string}) => {
+  const handleEscKeydown = (evt: KeyboardEvent) => {
     if (evt.key === 'Escape') {
       close()
     }

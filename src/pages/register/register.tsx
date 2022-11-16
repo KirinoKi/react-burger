@@ -10,7 +10,7 @@ import { Button } from "../../utils/utils";
 export const RegisterPage: FunctionComponent = () => {
   const [passwordValue, setPasswordValue] = useState<string>('');
 
-  const onChangePassword = (e: { target: { value: SetStateAction<string>; }; }) => {
+  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordValue(e.target.value)
   }
 

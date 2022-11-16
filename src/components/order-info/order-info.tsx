@@ -16,17 +16,17 @@ interface ParamTypes {
 };
 
 export function OrderInformation() {
-  let { id } = useParams<ParamTypes>();
-  let match = useRouteMatch()
+  const { id } = useParams<ParamTypes>();
+  const match = useRouteMatch()
   const isProfile = '/profile/orders/:id';
   const isFeed = '/feed/:id';
   const user = useSelector(store => store.auth.user);
   const allOrders = useSelector(store => store.ws.orders);
   const userOrders = useSelector(store => store.wsAuth.orders);
 
-  let orders = match.path === isProfile ? userOrders : allOrders;
+  const orders = match.path === isProfile ? userOrders : allOrders;
 
-  let orderData = orders.find((el) => el._id === id);
+  const orderData = orders.find((el) => el._id === id);
   const allIngredients = useSelector(store => store.ingredientsList.ingredients);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -49,9 +49,9 @@ export function OrderInformation() {
     }, 0);
 
 
-    let count: TCount = {};
+    const count: TCount = {};
 
-    for (let elem of orderData.ingredients) {
+    for (const elem of orderData.ingredients) {
       if (count[elem] === undefined) {
         count[elem] = 1;
       } else {

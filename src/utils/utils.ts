@@ -137,3 +137,15 @@ export const Tab: FC<{
     onClick: (value: string) => void;
     children: React.ReactNode;
 }> = TabUI
+
+export type TLocation = {
+  background: {
+    pathname: string;
+    search: string;
+    hash: string;
+    state: null;
+    key: string;
+  }
+  from: string;
+  state?: object;
+};
